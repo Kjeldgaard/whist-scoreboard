@@ -3,8 +3,8 @@ class Player:
         self.name = name
         self.score_per_round = list()
         self.start_score = start_score
-        self.total_score = 0
-        self.to_account = 0
+        self.total_score = float(0)
+        self.to_account = float(0)
         self._update_scores()
 
     def _update_total_score(self):
@@ -12,7 +12,7 @@ class Player:
 
     def _update_to_account(self):
         total_score = self.total_score
-        self.to_account = 0
+        self.to_account = float(0)
         divisor = 0
         while total_score < 0:
             self.to_account += max(-100, total_score) / max(divisor, 1)
@@ -28,10 +28,10 @@ class Player:
         self.score_per_round.append(score)
         self._update_scores()
 
-    def get_total_score(self):
+    def get_total_score(self) -> float:
         return self.total_score
 
-    def get_to_account(self):
+    def get_to_account(self) -> float:
         return self.to_account
 
     def edit_score(self, new_score: float):
