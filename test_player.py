@@ -28,6 +28,7 @@ def test_player_scoring():
     score_list = player.get_scoring()
     assert score_list == [-100, -200, -16, -316, 255.33333333333334]
 
+
 def test_player_edit_score():
     player = Player(name="john", start_score=-100)
     player.edit_score(-100)
