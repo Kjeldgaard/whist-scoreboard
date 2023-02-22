@@ -1,9 +1,11 @@
 from player import Player
 
+
 def test_player_name():
     player = Player(name="john", start_score=-100)
     name = player.get_name()
     assert name == "john"
+
 
 def test_player_score():
     player = Player(name="john", start_score=-100)
@@ -11,11 +13,13 @@ def test_player_score():
     score = player.get_total_score()
     assert score == float(-300)
 
+
 def test_player_account():
     player = Player(name="john", start_score=-100)
     player.add_score(-200)
     to_account = player.get_to_account()
     assert to_account == float(250)
+
 
 def test_player_scoring():
     player = Player(name="john", start_score=-100)
