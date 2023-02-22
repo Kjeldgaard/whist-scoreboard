@@ -1,4 +1,4 @@
-class Player():
+class Player:
     def __init__(self, name: str, start_score: float) -> None:
         self.name = name
         self.score_per_round = list()

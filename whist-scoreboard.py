@@ -1,6 +1,7 @@
 from player import Player
 from game import Game
 
+
 def main():
     whist = Game()
     whist.begin_game()
@@ -8,9 +9,9 @@ def main():
     while True:
         choice = input("Next step: (a)dd round, (e)nd game?: ")
         match choice:
-            case 'a':
+            case "a":
                 whist.add_round()
-            case 'e':
+            case "e":
                 print("Game over, final results:")
                 whist.print_scores()
                 break
@@ -18,6 +19,7 @@ def main():
                 print("Invalid choice")
 
     print(f"Money to account: {whist.get_to_account():.2f}")
+
 
 if __name__ == "__main__":
     main()

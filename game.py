@@ -2,9 +2,10 @@ from collections import namedtuple
 from prettytable import PrettyTable
 from player import Player
 
-Score = namedtuple('Score', 'win loss')
+Score = namedtuple("Score", "win loss")
 
-class Game():
+
+class Game:
     def __init__(self):
         self.total_score = float(0)
         self.to_account = float(0)
@@ -47,13 +48,15 @@ class Game():
         num_of_players = 0
         names = list()
 
-        print("Input players name, minimum of 4 players are required. Write 'q' when done")
+        print(
+            "Input players name, minimum of 4 players are required. Write 'q' when done"
+        )
         while True:
             name = input(f"Player {num_of_players + 1}: ")
             if num_of_players >= 4 and name == "q":
                 print(f"Number of players is {num_of_players}")
                 break
-            if name == 'q':
+            if name == "q":
                 continue
 
             if name in names:
@@ -88,18 +91,20 @@ class Game():
 
         for player in self.players:
             while True:
-                result = input(f"Result for {player.get_name()}: (w)in, (l)ose, (d)ealer, or (p)enalty? ")
+                result = input(
+                    f"Result for {player.get_name()}: (w)in, (l)ose, (d)ealer, or (p)enalty? "
+                )
                 match result:
-                    case 'w':
+                    case "w":
                         player.add_score(score.win)
                         break
-                    case 'l':
+                    case "l":
                         player.add_score(score.loss)
                         break
-                    case 'd':
+                    case "d":
                         player.add_score(0)
                         break
-                    case 'p':
+                    case "p":
                         player.add_score(-75)
                         break
                     case _:
@@ -117,7 +122,7 @@ class Game():
         tab.add_column("", index)
         for player in self.players:
             tab.add_column(player.get_name(), player.get_scoring())
-        tab.float_format = '.2'
+        tab.float_format = ".2"
         print(tab)
 
     def _compute_score(self, ticks: int, modifier: bool, result: int) -> namedtuple:
@@ -154,7 +159,7 @@ class Game():
             modifier_multiplier = 1
             if modifier:
                 modifier_multiplier = 2
-            score = modifier_multiplier * 2**(ticks - 7) * 2 * (ticks - result)
+            score = modifier_multiplier * 2 ** (ticks - 7) * 2 * (ticks - result)
             finale_score = Score(score, -score)
 
         else:
@@ -162,7 +167,7 @@ class Game():
             modifier_multiplier = 1
             if modifier:
                 modifier_multiplier = 2
-            score = modifier_multiplier * 2**(ticks - 7) * (result - ticks + 1)
+            score = modifier_multiplier * 2 ** (ticks - 7) * (result - ticks + 1)
             finale_score = Score(score, -score)
         return finale_score
 
@@ -178,32 +183,36 @@ class Game():
         modifier = False
         ticks = 0
         while True:
-            input_ticks = input("What was the bid? Ticks, (s)ol, (r)en sol, (o)plægger? ")
+            input_ticks = input(
+                "What was the bid? Ticks, (s)ol, (r)en sol, (o)plægger? "
+            )
             match input_ticks:
-                case 's':
+                case "s":
                     ticks = 1
                     break
-                case 'r':
+                case "r":
                     ticks = 0
                     break
-                case 'o':
+                case "o":
                     ticks = 1
                     modifier = True
                     break
-                case '7' | '8' | '9' | '10' | '11' | '12' | '13':
+                case "7" | "8" | "9" | "10" | "11" | "12" | "13":
                     ticks = int(input_ticks)
                     while True:
-                        input_modifier = input(f"{input_ticks} ticks? (r)en, (h)alv, (v)ip, (s)ans, (g)ode? ")
+                        input_modifier = input(
+                            f"{input_ticks} ticks? (r)en, (h)alv, (v)ip, (s)ans, (g)ode? "
+                        )
                         match input_modifier:
-                            case 'r':
+                            case "r":
                                 break
-                            case 'h' | 'v' | 's' | 'g':
+                            case "h" | "v" | "s" | "g":
                                 modifier = True
                                 break
-                            case '_':
+                            case "_":
                                 continue
                     break
-                case '_':
+                case "_":
                     continue
         result = self._get_result()
 
