@@ -1,6 +1,6 @@
 from collections import namedtuple
 from prettytable import PrettyTable
-from player import Player
+from src.player.player import Player
 
 Score = namedtuple("Score", "win loss")
 
