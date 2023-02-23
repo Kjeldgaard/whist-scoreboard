@@ -1,4 +1,4 @@
-from game import Game
+from src.game.game import Game
 
 
 def test_game_begin(monkeypatch):
