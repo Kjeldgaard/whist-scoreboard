@@ -1,4 +1,4 @@
-from src.game.game import Game
+from src.whist_scoreboard.game import Game
 
 
 def test_game_begin(monkeypatch):
