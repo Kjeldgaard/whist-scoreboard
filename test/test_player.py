@@ -1,4 +1,4 @@
-from src.player.player import Player
+from src.whist_scoreboard.player import Player
 
 
 def test_player_name():
