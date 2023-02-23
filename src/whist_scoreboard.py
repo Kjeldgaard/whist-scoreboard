@@ -6,11 +6,13 @@ def main():
     whist.begin_game()
 
     while True:
-        choice = input("Next step: (a)dd round, (e)nd game?: ")
+        choice = input("Next step: (a)dd round, (q)uit game?: ")
         match choice:
             case "a":
                 whist.add_round()
             case "e":
+                whist.edit_score()
+            case "q":
                 print("Game over, final results:")
                 whist.print_scores()
                 break
