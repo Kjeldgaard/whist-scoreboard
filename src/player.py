@@ -1,3 +1,6 @@
+import numbers
+
+
 class Player:
     def __init__(self, name: str, start_score: float) -> None:
         self.name = name
@@ -34,8 +37,16 @@ class Player:
     def get_to_account(self) -> float:
         return self.to_account
 
-    def edit_score(self, new_score: float):
-        pass
+    def edit_score(self, round: int, new_score: float):
+        if round > len(self.score_per_round) or round == 0:
+            print(f"Invalid round")
+            return
+        if not isinstance(new_score, numbers.Number):
+            print(f"Is not a number")
+            return
+        self.score_per_round[round - 1] = new_score
+        print(f"New score for {self.name} in {round} is {new_score}")
+        self._update_scores()
 
     def get_scoring(self):
         score_out = list()

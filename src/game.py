@@ -1,3 +1,4 @@
+import numbers
 from collections import namedtuple
 from prettytable import PrettyTable
 from player import Player
@@ -219,3 +220,42 @@ class Game:
         score = self._compute_score(ticks, modifier, result)
 
         return score
+
+    def edit_score(self):
+        while True:
+            name = input("Which player score to edit or 'q' for abort: ")
+            if name == "q":
+                return
+            for player in self.players:
+                if name == player.get_name():
+                    while True:
+                        round = input(f"Which round to edit, or 'q' for abort?")
+                        if round == "q":
+                            return
+                        try:
+                            round = int(round)
+                        except ValueError:
+                            print(f"{round} is invalid round, try again")
+                            continue
+                        if round <= len(player.score_per_round):
+                            while True:
+                                new_score = input(
+                                    f"What is the new score for {name} in round {round - 1}"
+                                )
+                                try:
+                                    new_score = float(new_score)
+                                except:
+                                    print(
+                                        f"{new_score} is invalid new score, try again"
+                                    )
+                                    continue
+                                player.edit_score(round, new_score)
+                                print(f"New score for round {round} is {new_score}")
+                                self._update_scores()
+                                self.print_scores()
+                                return
+                        else:
+                            print(
+                                f"Incorrect round, total number of rounds is {len(player.score_per_round)}"
+                            )
+            print(f"{name} not found, try again")

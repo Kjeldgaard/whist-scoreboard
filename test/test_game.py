@@ -1,4 +1,4 @@
-from src.whist_scoreboard.game import Game
+from src.game import Game
 
 
 def test_game_begin(monkeypatch):
@@ -156,3 +156,38 @@ def test_game_add_round2(monkeypatch):
     game.add_round()
     score = game.get_total_score()
     assert score == -400
+
+
+def test_game_edit_score(monkeypatch):
+    inputs = iter(
+        [
+            "-100",
+            "Niels",
+            "Anders",
+            "Mads",
+            "Stef",
+            "q",
+            "10",
+            "v",
+            "11",
+            "w",
+            "l",
+            "w",
+            "l",
+            "non-name",
+            "Niels",
+            "3",
+            "a",
+            "1",
+            "a",
+            "-123",
+        ]
+    )
+    monkeypatch.setattr("builtins.input", lambda name: next(inputs))
+    game = Game()
+    game.begin_game()
+    game.add_round()
+    game.edit_score()
+    score = game.get_total_score()
+
+    assert score == -555.0

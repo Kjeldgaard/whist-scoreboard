@@ -1,4 +1,4 @@
-from src.whist_scoreboard.player import Player
+from src.player import Player
 
 
 def test_player_name():
@@ -31,6 +31,16 @@ def test_player_scoring():
 
 def test_player_edit_score():
     player = Player(name="john", start_score=-100)
-    player.edit_score(-100)
+    player.add_score(-100)
+    player.edit_score(3, -10)
     score = player.get_total_score()
-    assert score == -100
+    assert score == -200
+    player.edit_score(0, -10)
+    score = player.get_total_score()
+    assert score == -200
+    player.edit_score(1, -10)
+    score = player.get_total_score()
+    assert score == -110
+    player.edit_score(1, "a")
+    score = player.get_total_score()
+    assert score == -110
