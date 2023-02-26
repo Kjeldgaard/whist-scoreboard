@@ -14,6 +14,7 @@ class Game:
         self.players = list()
         self.start_score = float(0)
         self.num_of_rounds = 0
+        self.player_map = list()
 
     def _set_start_score(self, start_score):
         self.start_score = start_score
@@ -37,6 +38,7 @@ class Game:
     def _add_player(self, player: Player):
         self.players.append(player)
         self.num_of_players += 1
+        self.player_map.append(player.get_name())
         self._update_scores()
 
     def get_total_score(self):
@@ -123,6 +125,12 @@ class Game:
         tab.add_column("", index)
         for player in self.players:
             tab.add_column(player.get_name(), player.get_scoring())
+        dealer = ["-"]
+        for round in range(self.num_of_rounds):
+            dealer.append(self.player_map[round % self.num_of_players])
+        dealer.append("-")
+        dealer.append("-")
+        tab.add_column("Dealer", dealer)
         tab.float_format = ".2"
         print(tab)
 
